@@ -1,9 +1,9 @@
 export interface Rental{
     rentalId:number,
-    carBrand:string,
+    brandName:string,
     firstName:string,
     lastName:string,
+    dailyPrice:number,
     rentDate:Date,
-    returnDate:Date,
-    
+    returnDate:Date
 }

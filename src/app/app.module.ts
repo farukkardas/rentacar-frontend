@@ -13,11 +13,6 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/ComponentsModule";
-import { BrandComponent } from "./components/brand/brand.component";
-import { CarComponent } from "./components/car/car.component";
-import { RentalComponent } from "./components/rental/rental.component";
-import { CustomerComponent } from "./components/customer/customer.component";
-import { ColorComponent } from "./components/color/color.component";
 
 @NgModule({
   imports: [
@@ -30,13 +25,7 @@ import { ColorComponent } from "./components/color/color.component";
     AppRoutingModule,
     ToastrModule.forRoot(),
   ],
-  declarations: [
-    AppComponent,
-    AdminLayoutComponent,
-    AuthLayoutComponent,
-    RentalComponent
-    
-  ],
+  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [],
   bootstrap: [AppComponent],
 })
