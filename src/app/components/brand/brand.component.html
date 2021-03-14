@@ -13,6 +13,8 @@
     <tr *ngFor="let brand of brands">
       <th class="text-success">{{ brand.id }}</th>
       <th class="text-success">{{ brand.brandName }}</th>
+      <th> <button type="button" class="btn btn-primary" style="margin-inline-start: 30cm;" (click)="setCurrentBrand(brand)">Listele</button></th>
     </tr>
+   
   </table>
   

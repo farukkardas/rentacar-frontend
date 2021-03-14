@@ -10,34 +10,34 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
   {
     path: "/dashboard",
-    title: "Dashboard",
+    title: "Anasayfa",
     rtlTitle: "لوحة القيادة",
-    icon: "icon-chart-pie-36",
+    icon: "icon-shape-star",
     class: "",
   },
   {
-    path: "/notifications",
+    path: "/colors",
     title: "Renkler",
     rtlTitle: "إخطارات",
     icon: "icon-palette",
     class: "",
   },
   {
-    path: "/tables",
+    path: "/brands",
     title: "Markalar",
     rtlTitle: "قائمة الجدول",
     icon: "icon-notes",
     class: "",
   },
   {
-    path: "/typography",
+    path: "/customers",
     title: "Müşteriler",
     rtlTitle: "طباعة",
     icon: "icon-wallet-43",
     class: "",
   },
   {
-    path: "/maps",
+    path: "/cars",
     title: "Kiralık Araçlar",
     rtlTitle: "خرائط",
     icon: "icon-bus-front-12",
@@ -50,29 +50,29 @@ export const ROUTES: RouteInfo[] = [
     icon: "icon-coins",
     class: "",
   },
-  {
-    path: "/icons",
-    title: "Icons",
-    rtlTitle: "الرموز",
-    icon: "icon-atom",
-    class: "",
-  },
+  // {
+  //   path: "/icons",
+  //   title: "Icons",
+  //   rtlTitle: "الرموز",
+  //   icon: "icon-atom",
+  //   class: "",
+  // },
 
-  {
-    path: "/user",
-    title: "User Profile",
-    rtlTitle: "ملف تعريفي للمستخدم",
-    icon: "icon-single-02",
-    class: "",
-  },
+  // {
+  //   path: "/user",
+  //   title: "User Profile",
+  //   rtlTitle: "ملف تعريفي للمستخدم",
+  //   icon: "icon-single-02",
+  //   class: "",
+  // },
 
-  {
-    path: "/rtl",
-    title: "RTL Support",
-    rtlTitle: "ار تي ال",
-    icon: "icon-world",
-    class: "",
-  },
+  // {
+  //   path: "/rtl",
+  //   title: "RTL Support",
+  //   rtlTitle: "ار تي ال",
+  //   icon: "icon-world",
+  //   class: "",
+  // },
 ];
 
 @Component({

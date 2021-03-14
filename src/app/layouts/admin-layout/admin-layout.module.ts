@@ -6,13 +6,12 @@ import { FormsModule } from "@angular/forms";
 
 import { AdminLayoutRoutes } from "./admin-layout.routing";
 import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
-import { IconsComponent } from "../../pages/icons/icons.component";
-import { MapComponent } from "../../pages/map/map.component";
-import { NotificationsComponent } from "../../pages/notifications/notifications.component";
 import { UserComponent } from "../../pages/user/user.component";
-import { TablesComponent } from "../../pages/tables/tables.component";
-import { TypographyComponent } from "../../pages/typography/typography.component";
 import { RentalsComponent } from "../../pages/rentals/rentals.component";
+import { BrandsComponent}  from "../../pages/brands/brands.component";
+import { ColorsComponent } from "src/app/pages/colors/colors.component";
+import { CarsComponent } from "src/app/pages/cars/cars.component";
+import { CustomersComponent } from "src/app/pages/customers/customers.component";
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -21,6 +20,7 @@ import { ColorComponent } from "src/app/components/color/color.component";
 import { CustomerComponent } from "src/app/components/customer/customer.component";
 import { CarComponent } from "src/app/components/car/car.component";
 import { RentalComponent } from "src/app/components/rental/rental.component";
+
 
 @NgModule({
   imports: [
@@ -33,17 +33,17 @@ import { RentalComponent } from "src/app/components/rental/rental.component";
   declarations: [
     DashboardComponent,
     UserComponent,
-    TablesComponent,
-    IconsComponent,
-    TypographyComponent,
-    NotificationsComponent,
-    MapComponent,
-    RentalsComponent,
     BrandComponent,
+    RentalsComponent,
     ColorComponent,
     CustomerComponent,
     CarComponent,
-    RentalComponent
+    RentalComponent,
+    BrandsComponent,
+    ColorsComponent,
+    CarsComponent,
+    CustomersComponent
+
     // RtlComponent
   ],
 })
