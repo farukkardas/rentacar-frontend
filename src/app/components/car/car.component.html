@@ -1,24 +1,96 @@
 <div *ngIf="dataLoaded == false" class="spinner-border text-info" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<div class="input-group">
+<div class="form-group col-lg-3">
+  <label for="exampleFormControlInput1" class="form-label"></label>
+  <input type="text"  class="form-control" [(ngModel)]="filterText"  id="filterText" placeholder="Search a car..">
+</div>
   
-  <table *ngIf="dataLoaded == true" class="table">
-    <thead>
-      <tr>
-        <th class="text-danger" style="padding-left: 15px;">Marka</th>
-        <th class="text-danger">Model</th>
-        <th class="text-danger" style="padding-left: 20px;">Yıl</th>
-        <th class="text-danger" style="padding-left: 20px;">Renk</th>
-        <th class="text-danger">Günlük Fiyat</th>
-      </tr>
-    </thead>
-    <tr *ngFor="let car of cars">
-      <th class="text-success">{{ car.brandName }}</th>
-      <th class="text-success">{{ car.carName }}</th>
-      <th class="text-success">{{ car.modelYear }}</th>
-      <th class="text-success">{{ car.colorName }}</th>
-      <th class="text-success">{{ car.dailyPrice }} TL</th>
-      <th> <button type="button" class="btn btn-primary" style="margin-inline-start: 25cm;">Detaylar</button></th>
+<label for="exampleFormControlSelect1"></label>
+  <select  class="form-control w-25" id="exampleFormControlSelect1"  style="margin-left: 360px;" [(ngModel)]="selectedBrand" >
+  <option selected>Marka Seçiniz</option>
+   <option style="background-color: grey;" *ngFor="let brand of brands ">
+      {{ brand.brandName }}
+    </option>
+   </select>  
+   <label for="exampleFormControlSelect2" ></label>
+   <select  class="form-control w-25" id="exampleFormControlSelect2" style="margin-left: 743px;" [(ngModel)]="selectedColor">
+     <option selected>Renk Seçiniz</option>
+    <option style="background-color: grey;" *ngFor="let color of colors"  >
+       {{ color.colorName }}
+     </option>
+   </select>
+   
+</div>
+<a
+   class="btn btn-info w-25"
+   routerLink="filters/{{ selectedColor }}/{{
+     selectedBrand
+   }}"
+
+   style="margin-left: 25cm"
+ >
+   Filtrele
+   
+ </a>
+ 
+<table *ngIf="dataLoaded == true" class="table"> 
+  <thead>
+    <tr>
+      <th class="text-danger" style="padding-left: 15px">ID</th>
+      <th class="text-danger" style="padding-left: 15px">Brands</th>
+      <th class="text-danger">Model</th>
+      <th class="text-danger" style="padding-left: 20px">Year</th>
+      <th class="text-danger" style="padding-left: 20px">Color</th>
+      <th class="text-danger">Daily Price</th>
+      <th class="text-danger">Image</th>
     </tr>
-  </table>
-  
+  </thead>
+  <tr *ngFor="let car of cars | filter:filterText">
+    <th class="text-success">{{ car.id }}</th>
+    <th class="text-success">{{ car.brandName }}</th>
+    <th class="text-success">{{ car.carName }}</th>
+    <th class="text-success">{{ car.modelYear }}</th>
+    <th class="text-success">{{ car.colorName }}</th>
+    <ng-container *ngIf="car.dailyPrice > 1000">
+      <th class="text-success">
+        {{ car.dailyPrice | currency: "USD":"symbol":"4.2-2" }}
+      </th>
+    </ng-container>
+    <ng-container *ngIf="car.dailyPrice < 1000">
+      <th class="text-success">{{ car.dailyPrice | currency }}</th>
+    </ng-container>
+    <!-- <th class="text-success">{{ car.dailyPrice | currency: "TRY":"TL":""}}</th> -->
+    <th><img src="http://localhost:61198/uploads/{{ car.imagePath }}" /></th>
+
+    <th></th>
+    <th>
+      <a
+        class="btn btn-primary stretched-link"
+        style="margin-inline-start: 20cm"
+        href="http://localhost:4200/#/cars/cardetails/{{ car.id }}"
+        >Araçları Listele</a
+      >
+    </th>
+  </tr>
+</table>
+
+<!-- <div class="row" >
+    <div *ngFor="let car of cars" class="card" style="width: 20rem;">
+      <link rel="icon" type="image/jpg" href="./assets/img/indir.jpg" />
+      <div  class="card-body">
+        <h5 class="card-title">{{car.description}}</h5>
+      </div >
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" style="color:black;">Marka: {{car.brandName}}</li>
+        <li class="list-group-item" style="color:black;">Renk: {{car.colorName}}</li>
+        <li class="list-group-item" style="color:black;">Fiyat: {{car.dailyPrice}} TL</li>
+      </ul>
+      <div class="card-body">
+        <button routerLink="/cars/car-detail/{{car.id}}" type="button" class="btn btn-primary">Detaylar</button>
+        <button type="button" class="btn btn-light">Kirala</button>
+      </div>
+    </div>
+  </div> -->

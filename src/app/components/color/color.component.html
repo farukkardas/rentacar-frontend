@@ -1,19 +1,22 @@
 <div *ngIf="dataLoaded==false" class="spinner-border text-info" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-  
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Search a Color</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control w-50"  id="filterText" placeholder="Search a color..">
+  </div>
   <table *ngIf="dataLoaded == true" class="table">
     <thead>
       <tr>
           <th class="text-danger">Id</th>
-          <th class="text-danger">Renk</th>
+          <th class="text-danger">Color</th>
 
       </tr>
     </thead>
-    <tr *ngFor="let color of colors">
+    <tr *ngFor="let color of colors | colorfilter:filterText">
       <th class="text-success">{{ color.id }}</th>
       <th class="text-success">{{ color.colorName }}</th>
-      <th> <button type="button" class="btn btn-primary" style="margin-inline-start: 30cm;">Araçları Listele</button></th>
+      <th><a class="btn btn-primary stretched-link" style="margin-inline-start: 30cm;" href="http://localhost:4200/#/cars/colors/{{color.colorName}}">Araçları Listele</a></th>
     </tr>
   </table>
   

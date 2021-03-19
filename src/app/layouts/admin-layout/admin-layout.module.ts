@@ -20,6 +20,10 @@ import { ColorComponent } from "src/app/components/color/color.component";
 import { CustomerComponent } from "src/app/components/customer/customer.component";
 import { CarComponent } from "src/app/components/car/car.component";
 import { RentalComponent } from "src/app/components/rental/rental.component";
+import { FilterPipe } from "src/app/pipes/filter.pipe";
+import { ColorfilterPipe } from "src/app/pipes/colorfilter.pipe";
+import { BrandfilterPipe } from "src/app/pipes/brandfilter.pipe";
+
 
 
 @NgModule({
@@ -42,7 +46,13 @@ import { RentalComponent } from "src/app/components/rental/rental.component";
     BrandsComponent,
     ColorsComponent,
     CarsComponent,
-    CustomersComponent
+    CustomersComponent,
+    FilterPipe,
+    ColorfilterPipe,
+    BrandfilterPipe,
+    
+    
+    
 
     // RtlComponent
   ],
