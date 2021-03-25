@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ListResponseModel } from '../models/listResponseModel';
 import { Car } from "../models/car";
 import { CarFilterDto } from '../models/carFilterDto';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,14 +17,13 @@ export class CarService {
     let getAllPath = this.apiUrl + "cars/getcardetail"
     return this.httpClient.get<ListResponseModel<Car>>(getAllPath);
   }
-  
-  getCarsByBrandName(brandName:string):Observable<ListResponseModel<Car>> {
-    let newPath = this.apiUrl + "cars/getcardetailbrand?brandName="+ brandName
+  getCarsByBrandId(brandId: number): Observable<ListResponseModel<Car>> {
+    let newPath=this.apiUrl+"cars/getbybrandid?brandId="+brandId
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
 
-  getCarsByColorName(colorName:string):Observable<ListResponseModel<Car>>{
-    let newPath = this.apiUrl + "cars/getcardetailbycolor?colorName=" + colorName
+  getCarsByColorId(colorId: number): Observable<ListResponseModel<Car>> {
+    let newPath=this.apiUrl+"cars/getbycolorid?colorId="+colorId
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
 
@@ -32,12 +32,11 @@ export class CarService {
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
 
-  getCarDetailsByFilters(
-    carFilterDto: CarFilterDto
-  ): Observable<ListResponseModel<Car[]>> {
-    return this.httpClient.post<ListResponseModel<Car[]>>(
-      `${this.getPath}`, carFilterDto
-    );
+  getCarDetailsByFilters(carFilterDto: CarFilterDto): Observable<ListResponseModel<Car[]>> {
+    let newPath = this.apiUrl + "cars/getcardetailbyfilters" + carFilterDto
+    return this.httpClient.post<ListResponseModel<Car[]>>(newPath,carFilterDto);
   }
+
+
 
 }

@@ -8,7 +8,8 @@ import { Color } from "src/app/models/color";
 import { ColorService } from "src/app/services/color.service";
 import { BrandService } from "src/app/services/brand.service";
 import { Brand } from "src/app/models/brand";
-import { CarFilterDto } from 'src/app/models/carFilterDto';
+import {FormBuilder,FormGroup, Validators} from '@angular/forms';
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-car",
@@ -19,30 +20,39 @@ export class CarComponent implements OnInit {
   cars: Car[] = [];
   colors: Color[] = [];
   brands: Brand[] = [];
+  brandForm: FormGroup;
+  colorForm:  FormGroup;
   dataLoaded = false;
   sanitizer: any;
   filterText: "";
-  selectedBrand: string = '';
-  selectedColor: string = '';
   constructor(
     private carService: CarService,
     sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
     private colorService: ColorService,
-    private brandService:BrandService
+    private brandService: BrandService,
+    private formBuilder: FormBuilder,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      if (params["brandName"]) {
-        this.getCarsByBrandName(params["brandName"]);
-      } else if (params["colorName"]) {
-        this.getCarsByColorName(params["colorName"]);
+      if (params["brandId"]) {
+        this.getCarsByBrandId(params["brandId"]);
+        this.getColors();
+        this.getBrands();
+      } else if (params["colorId"]) {
+        this.getCarsByColorId(params["colorId"]);
+        this.getColors();
+        this.getBrands();
       } else {
         this.getCars();
         this.getColors();
         this.getBrands();
       }
+    
+      this.createColorForm()
+      this.createBrandForm()
     });
   }
 
@@ -50,6 +60,18 @@ export class CarComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(prefix + value);
   }
 
+  createColorForm(){
+    this.colorForm = this.formBuilder.group({
+      color: [""],
+    });
+  }
+
+  createBrandForm(){
+    this.brandForm = this.formBuilder.group({
+      brand: [""],
+    });
+
+  }
   getCars() {
     this.carService.getCars().subscribe((response) => {
       this.cars = response.data;
@@ -64,21 +86,22 @@ export class CarComponent implements OnInit {
     });
   }
 
-  getBrands(){
-    this.brandService.getBrands().subscribe((response)=>{
+  getBrands() {
+    this.brandService.getBrands().subscribe((response) => {
       this.brands = response.data;
       this.dataLoaded = true;
-    })
+    });
   }
-  getCarsByBrandName(brandName: string) {
-    this.carService.getCarsByBrandName(brandName).subscribe((response) => {
+
+  getCarsByColorId(colorId: number) {
+    this.carService.getCarsByColorId(colorId).subscribe((response) => {
       this.cars = response.data;
       this.dataLoaded = true;
     });
   }
 
-  getCarsByColorName(colorName: string) {
-    this.carService.getCarsByColorName(colorName).subscribe((response) => {
+  getCarsByBrandId(brandId: number) {
+    this.carService.getCarsByBrandId(brandId).subscribe((response) => {
       this.cars = response.data;
       this.dataLoaded = true;
     });
@@ -90,16 +113,19 @@ export class CarComponent implements OnInit {
     });
   }
 
-  getCarDetailsByFilters(colorName: string, brandName: string) {
-    console.log('getCarDetailsByFilters run.');
+  getBrandSubmit() {
+    let brandForm = Object.assign({},this.brandForm.value)
 
-    let carFilterDto: CarFilterDto = new CarFilterDto();
-    carFilterDto.brandName = brandName;
-    carFilterDto.colorName = colorName;
+    this.carService.getCarsByBrandId(brandForm).subscribe(response=>{
+      this.toastrService.success(response.message)
+    },responseError=>console.log(responseError))
+  }
 
-    this.carService.getCarDetailsByFilters(carFilterDto).subscribe(
-      (response) => {
-        this.cars = [];
-      });
+  getColorSubmit() {
+   let colorForm = Object.assign({},this.colorForm.value)
+   
+   this.carService.getCarsByColorId(colorForm).subscribe(response=>{
+     this.toastrService.success(response.message)
+   },responseError=>this.toastrService.error("hata"))
   }
 }

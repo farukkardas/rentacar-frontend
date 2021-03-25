@@ -18,8 +18,10 @@ export const AdminLayoutRoutes: Routes = [
   { path: "colors", component: ColorsComponent },
   { path: "cars", component: CarsComponent },
   { path: "customers", component: CustomersComponent },
-  { path:"cars/brands/:brandName", component:CarsComponent},
-  { path:"cars/colors/:colorName", component:CarsComponent},
+  { path:"cars/brands/:brandId", component:CarsComponent},
+  { path:"cars/colors/:colorId", component:CarsComponent},
+  { path:"cars/filters/:colorId",component:CarsComponent},
+  { path:"cars/filters/:brandId",component:CarsComponent},
   { path:"cars/filters/:colorName/:brandName",component:CarsComponent}
 
 ];

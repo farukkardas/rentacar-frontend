@@ -1,6 +1,5 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { ToastrModule } from "ngx-toastr";
@@ -10,11 +9,15 @@ import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/ComponentsModule";
+import { PaymentComponent } from './components/payment/payment.component';
+import { RentacarComponent } from './components/rentacar/rentacar.component';
+import { LoginComponent } from './components/login/login.component';
+import { FormBuilder } from "@angular/forms";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    FormsModule,
     HttpClientModule,
     ComponentsModule,
     NgbModule,
@@ -26,6 +29,9 @@ import { ComponentsModule } from "./components/ComponentsModule";
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
+    PaymentComponent,
+    RentacarComponent,
+    LoginComponent,
   
     
     

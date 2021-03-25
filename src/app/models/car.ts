@@ -6,4 +6,7 @@ export class Car{
     colorName!:string;
     dailyPrice!:number;
     imagePath!:string;
+    fuelEffiency:string;
+    engine!:string;
+    horsePower!:number;
 }
