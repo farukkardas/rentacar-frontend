@@ -114,18 +114,27 @@ export class CarComponent implements OnInit {
   }
 
   getBrandSubmit() {
-    let brandForm = Object.assign({},this.brandForm.value)
-
-    this.carService.getCarsByBrandId(brandForm).subscribe(response=>{
-      this.toastrService.success(response.message)
-    },responseError=>console.log(responseError))
+    this.carService.getCarsByBrandId(this.brandForm.get('brand').value).subscribe((response) => {
+      this.cars = response.data;
+      this.dataLoaded = true;
+      if(this.cars.length>0)
+      this.toastrService.success("Filtered By Brand",this.cars[0].brandName)
+      else{
+        this.toastrService.error("No Vehicle Matching The Filter Found")
+      }
+      
+    });
   }
 
   getColorSubmit() {
-   let colorForm = Object.assign({},this.colorForm.value)
-   
-   this.carService.getCarsByColorId(colorForm).subscribe(response=>{
-     this.toastrService.success(response.message)
-   },responseError=>this.toastrService.error("hata"))
+    this.carService.getCarsByColorId(this.colorForm.get('color').value).subscribe((response) => {
+      this.cars = response.data;
+      this.dataLoaded = true;
+      if(this.cars.length>0)
+      this.toastrService.success("Filtered By Color",this.cars[0].colorName)
+      else{
+        this.toastrService.error("No Vehicle Matching The Filter Found")
+      }
+    });
   }
 }

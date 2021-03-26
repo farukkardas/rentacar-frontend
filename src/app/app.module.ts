@@ -9,16 +9,18 @@ import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/ComponentsModule";
-import { PaymentComponent } from './components/payment/payment.component';
-import { RentacarComponent } from './components/rentacar/rentacar.component';
-import { LoginComponent } from './components/login/login.component';
-import { FormBuilder } from "@angular/forms";
-import { CommonModule } from "@angular/common";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { LoginGuard } from "./guards/login.guard";
+
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
     HttpClientModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
     ComponentsModule,
     NgbModule,
     RouterModule,
@@ -29,10 +31,6 @@ import { CommonModule } from "@angular/common";
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    PaymentComponent,
-    RentacarComponent,
-    LoginComponent,
-  
     
     
   ],

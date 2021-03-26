@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
-// import {FormBuilder,  FormsModule,  ReactiveFormsModule } from "@angular/forms";
 
 import { AdminLayoutRoutes } from "./admin-layout.routing";
 import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
@@ -23,21 +22,19 @@ import { RentalComponent } from "src/app/components/rental/rental.component";
 import { FilterPipe } from "src/app/pipes/filter.pipe";
 import { ColorfilterPipe } from "src/app/pipes/colorfilter.pipe";
 import { BrandfilterPipe } from "src/app/pipes/brandfilter.pipe";
-import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormBuilder, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { LoginComponent } from "src/app/components/login/login.component";
+import { LoginpageComponent } from "src/app/pages/loginpage/loginpage.component";
+import { LoginGuard } from "src/app/guards/login.guard";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
-    BrowserAnimationsModule,
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    BrowserModule,
     FormsModule,
-    FormBuilder,
   ],
   declarations: [
     DashboardComponent,
@@ -55,8 +52,11 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from "@angular/forms";
     FilterPipe,
     ColorfilterPipe,
     BrandfilterPipe,
+    LoginComponent,
+    LoginpageComponent
 
     // RtlComponent
   ],
+  providers: [LoginGuard]
 })
 export class AdminLayoutModule {}
