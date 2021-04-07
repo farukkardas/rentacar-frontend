@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { ToastrModule } from "ngx-toastr";
 import { AppComponent } from "./app.component";
@@ -11,7 +11,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/ComponentsModule";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { LoginGuard } from "./guards/login.guard";
 
 
 @NgModule({
@@ -25,18 +24,10 @@ import { LoginGuard } from "./guards/login.guard";
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({ positionClass: "toast-bottom-right" }),
   ],
-  declarations: [
-    AppComponent,
-    AdminLayoutComponent,
-    AuthLayoutComponent,
-    
-    
-  ],
-  providers: [
-      
-  ],
+  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

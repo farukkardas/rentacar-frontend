@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
 
   createLoginForm() {
     this.loginForm = this.formBuilder.group({
-      email: ["", Validators.required],
-      password: ["", Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
 
@@ -34,8 +34,10 @@ export class LoginComponent implements OnInit {
       this.authService.login(loginModel).subscribe(
         (response) => {
           console.log(response);
-          this.toastrService.success(response.message,"Giriş başarılı!");
-          localStorage.setItem("token", response.data.token);
+          this.toastrService.success(response.message,"Login success!");
+          localStorage.setItem('token', response.data.token);
+          console.log(localStorage.getItem('token'));
+          
         },
         (responseError) => {
           console.log(responseError);

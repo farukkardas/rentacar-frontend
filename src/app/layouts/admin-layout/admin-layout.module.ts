@@ -1,11 +1,10 @@
 import { NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 
 import { AdminLayoutRoutes } from "./admin-layout.routing";
 import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
-import { UserComponent } from "../../pages/user/user.component";
 import { RentalsComponent } from "../../pages/rentals/rentals.component";
 import { BrandsComponent } from "../../pages/brands/brands.component";
 import { ColorsComponent } from "src/app/pages/colors/colors.component";
@@ -26,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from "src/app/components/login/login.component";
 import { LoginpageComponent } from "src/app/pages/loginpage/loginpage.component";
 import { LoginGuard } from "src/app/guards/login.guard";
+import { AuthInterceptor } from "src/app/interceptors/auth.interceptor";
 
 @NgModule({
   imports: [
@@ -38,7 +38,6 @@ import { LoginGuard } from "src/app/guards/login.guard";
   ],
   declarations: [
     DashboardComponent,
-    UserComponent,
     BrandComponent,
     RentalsComponent,
     ColorComponent,
@@ -57,6 +56,6 @@ import { LoginGuard } from "src/app/guards/login.guard";
 
     // RtlComponent
   ],
-  providers: [LoginGuard]
+  providers: [{provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor,multi:true},LoginGuard]
 })
 export class AdminLayoutModule {}

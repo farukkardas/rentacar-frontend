@@ -16,7 +16,7 @@
     <tr *ngFor="let brand of brands | brandfilter:filterBrand">
       <th class="text-success">{{ brand.id }}</th>
       <th class="text-success">{{ brand.brandName }}</th>
-      <th><a class="btn btn-primary stretched-link" style="margin-inline-start: 30cm;" routerLink="/cars/brands/{{brand.brandName}}">Araçları Listele</a></th>
+      <th><a class="btn btn-primary stretched-link" style="margin-inline-start: 30cm;" routerLink="/cars/brands/{{brand.id}}">Araçları Listele</a></th>
       
     
     </tr>

@@ -16,7 +16,7 @@
     <tr *ngFor="let color of colors | colorfilter:filterText">
       <th class="text-success">{{ color.id }}</th>
       <th class="text-success">{{ color.colorName }}</th>
-      <th><a class="btn btn-primary stretched-link" style="margin-inline-start: 30cm;" routerLink="/cars/colors/{{color.colorName}}">Araçları Listele</a></th>
+      <th><a class="btn btn-primary stretched-link" style="margin-inline-start: 30cm;" routerLink="/cars/colors/{{color.id}}">Araçları Listele</a></th>
     </tr>
   </table>
   
