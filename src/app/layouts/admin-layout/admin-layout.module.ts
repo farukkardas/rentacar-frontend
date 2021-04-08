@@ -26,6 +26,7 @@ import { LoginComponent } from "src/app/components/login/login.component";
 import { LoginpageComponent } from "src/app/pages/loginpage/loginpage.component";
 import { LoginGuard } from "src/app/guards/login.guard";
 import { AuthInterceptor } from "src/app/interceptors/auth.interceptor";
+import { PaymentComponent } from "src/app/components/payment/payment.component";
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { AuthInterceptor } from "src/app/interceptors/auth.interceptor";
     CustomerComponent,
     CarComponent,
     RentalComponent,
+    PaymentComponent,
     BrandsComponent,
     ColorsComponent,
     CarsComponent,

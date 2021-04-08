@@ -34,7 +34,11 @@
   <div class="d-flex flex-row bd-highlight mb-3">
     <form [formGroup]="colorForm" (ngSubmit)="getColorSubmit()">
       <p>
-        <select  style="width:50px;"  style="margin-left: 7cm" formControlName="color">
+        <select
+          style="width: 50px"
+          style="margin-left: 7cm"
+          formControlName="color"
+        >
           <option [ngValue]="null" disabled>Select Color</option>
           <option *ngFor="let color of colors" [ngValue]="color.id">
             {{ color.colorName }}
@@ -126,9 +130,73 @@
             </div>
             <small class="text-muted key pl-3"></small>
             <div class="mx-3 mt-3 mb-2">
-              <button type="button" class="btn btn-danger btn-block">
-                <small style="font-size: 15px">Rent</small>
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">
+                    Rent a Vehicle
+                  </h4>
+                  <button
+                    type="button"
+                    class="close"
+                    aria-label="Close"
+                    (click)="modal.dismiss('Cross click')"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label>Brand : {{car.brandName}}</label>
+                      <br>
+                      <label>Model : {{car.carName}}</label>
+                      <br>
+                      <label>Year : {{car.modelYear}}</label>
+                      <br>
+                      <label>Price : {{car.dailyPrice || currency}}</label>
+                      <br>
+                      <label for="dateOfBirth">Pick a date</label>
+                      <div class="input-group">
+                        <input
+                          id="dateOfBirth"
+                          class="form-control"
+                          placeholder="yyyy-mm-dd"
+                          name="dp"
+                          ngbDatepicker
+                          #dp="ngbDatepicker"
+                          style="color : black;"
+                        />
+                        <div class="input-group-append">
+                          <button
+                            class="btn btn-outline-secondary calendar"
+                            style="background-color: #3c3e43;"
+                            (click)="dp.toggle()"
+                            type="button"
+                          ><small>Choose</small></button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-outline-dark"
+                    routerLink="/payment"
+                  >
+                    Rent
+                  </button>
+                </div>
+              </ng-template>
+
+              <button
+                class="btn btn-primary stretched-link"
+                (click)="open(content)"
+              >
+                Rent
               </button>
+
+              <hr />
             </div>
           </div>
         </div>

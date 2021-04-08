@@ -11,6 +11,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/ComponentsModule";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { PaymentComponent } from './components/payment/payment.component';
 
 
 @NgModule({

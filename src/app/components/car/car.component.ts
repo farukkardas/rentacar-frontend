@@ -10,6 +10,7 @@ import { BrandService } from "src/app/services/brand.service";
 import { Brand } from "src/app/models/brand";
 import {FormBuilder,FormGroup, Validators} from '@angular/forms';
 import { ToastrService } from "ngx-toastr";
+import { ModalDismissReasons, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-car",
@@ -25,6 +26,7 @@ export class CarComponent implements OnInit {
   dataLoaded = false;
   sanitizer: any;
   filterText: "";
+  closeResult = '';
   constructor(
     private carService: CarService,
     sanitizer: DomSanitizer,
@@ -32,8 +34,11 @@ export class CarComponent implements OnInit {
     private colorService: ColorService,
     private brandService: BrandService,
     private formBuilder: FormBuilder,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private modalService:NgbModal
   ) {}
+
+ 
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
@@ -60,6 +65,12 @@ export class CarComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(prefix + value);
   }
 
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = '';
+    });
+  }
+ 
   createColorForm(){
     this.colorForm = this.formBuilder.group({
       color: [""],

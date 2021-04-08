@@ -9,6 +9,7 @@ import { CustomersComponent } from "src/app/pages/customers/customers.component"
 import { LoginpageComponent } from "src/app/pages/loginpage/loginpage.component";
 import { LoginGuard } from "src/app/guards/login.guard";
 import { RentalComponent } from "src/app/components/rental/rental.component";
+import { PaymentComponent } from "src/app/components/payment/payment.component";
 
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
@@ -24,6 +25,6 @@ export const AdminLayoutRoutes: Routes = [
   { path:"cars/filters/:colorId",component:CarsComponent},
   { path:"cars/filters/:brandId",component:CarsComponent},
   { path:"cars/filters/:colorName/:brandName",component:CarsComponent},
-  {path: "login",component:LoginpageComponent}
-
+  {path: "login",component:LoginpageComponent},
+  {path: "payment",component:PaymentComponent , canActivate:[LoginGuard]}
 ];

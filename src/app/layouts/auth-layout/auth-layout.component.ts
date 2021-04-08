@@ -196,7 +196,7 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
     this.modalService.open(content, {windowClass: 'modal-search'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      
     });
   }
 
